@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>돈의 심리학 투자성향 테스트</title>
+<style>
+body{font-family:Arial,sans-serif;max-width:800px;margin:40px auto;padding:20px;line-height:1.6}
+.card{border:1px solid #ddd;border-radius:10px;padding:20px;margin:20px 0}
+button{padding:10px 18px;font-size:16px}
+.result{font-size:20px;font-weight:bold;margin-top:20px}
+label{display:block;margin:8px 0}
+</style>
+</head>
+<body>
+<h1>돈의 심리학 투자성향 테스트</h1>
+<p>독서토론용 간단 테스트입니다.</p>
+
+<form id="quiz">
+<div class="card">
+<h3>Q1. 1억 원이 생겼다.</h3>
+<label><input type="radio" name="q1" value="1"> 예금에 넣는다</label>
+<label><input type="radio" name="q1" value="2"> 절반만 투자한다</label>
+<label><input type="radio" name="q1" value="3"> 대부분 투자한다</label>
+</div>
+
+<div class="card">
+<h3>Q2. 투자금이 한 달 만에 -30%가 됐다.</h3>
+<label><input type="radio" name="q2" value="1"> 잠이 안 온다</label>
+<label><input type="radio" name="q2" value="2"> 불안하지만 기다린다</label>
+<label><input type="radio" name="q2" value="3"> 추가 매수한다</label>
+</div>
+
+<div class="card">
+<h3>Q3. 어떤 선택이 더 끌리는가?</h3>
+<label><input type="radio" name="q3" value="1"> 연 5% 확실</label>
+<label><input type="radio" name="q3" value="2"> 상황에 따라 고민</label>
+<label><input type="radio" name="q3" value="3"> 연 15% 가능, 손실 위험 존재</label>
+</div>
+
+<div class="card">
+<h3>Q4. 친구가 투자로 2배 수익을 냈다.</h3>
+<label><input type="radio" name="q4" value="1"> 별 생각 없다</label>
+<label><input type="radio" name="q4" value="2"> 조금 부럽다</label>
+<label><input type="radio" name="q4" value="3"> 나도 당장 해보고 싶다</label>
+</div>
+
+<div class="card">
+<h3>Q5. 당신이 더 중요하게 생각하는 것은?</h3>
+<label><input type="radio" name="q5" value="1"> 원금 보존</label>
+<label><input type="radio" name="q5" value="2"> 균형</label>
+<label><input type="radio" name="q5" value="3"> 높은 수익 가능성</label>
+</div>
+
+<button type="button" onclick="calc()">결과 보기</button>
+</form>
+
+<div id="result" class="result"></div>
+
+<script>
+function calc(){
+ let total=0;
+ for(let i=1;i<=5;i++){
+   let v=document.querySelector('input[name=q'+i+']:checked');
+   if(!v){alert('모든 문항에 답해주세요.'); return;}
+   total+=Number(v.value);
+ }
+ let text="";
+ if(total<=8){
+   text="안정형 투자자 🛡️";
+ }else if(total<=12){
+   text="균형형 투자자 ⚖️";
+ }else{
+   text="공격형 투자자 🚀";
+ }
+ document.getElementById('result').innerHTML =
+   "총점: "+total+"점<br>"+text+
+   "<br><br>토론 질문: 당신의 실제 투자 방식은 이 결과와 일치하나요?";
+}
+</script>
+</body>
+</html>
