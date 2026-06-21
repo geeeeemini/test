@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>돈의 심리학 - 투자 성향 테스트</title>
+    <style>
+        :root {
+            --black: #111111;
+            --gray-dark: #444444;
+            --gray-light: #f4f4f4;
+            --accent: #0076ff; /* 트렌디한 네온 블루 포인트 */
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #ffffff;
+            color: var(--black);
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 460px;
+            width: 100%;
+        }
+        h1 {
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+        .subtitle {
+            text-align: center;
+            color: #888;
+            font-size: 14px;
+            margin-bottom: 40px;
+        }
+        .question-card {
+            margin-bottom: 35px;
+        }
+        .question-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 18px;
+            line-height: 1.5;
+        }
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .option-label {
+            display: flex;
+            align-items: center;
+            padding: 14px 16px;
+            background-color: var(--gray-light);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--gray-dark);
+        }
+        .option-label:hover {
+            background-color: #e2e8f0;
+            color: var(--black);
+        }
+        .option-label input {
+            margin-right: 12px;
+            accent-color: var(--accent);
+        }
+        
+        /* 모던한 플랫 버튼 */
+        button {
+            width: 100%;
+            padding: 16px;
+            background-color: var(--black);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: opacity 0.2s;
+        }
+        button:hover {
+            opacity: 0.9;
+        }
+        
+        /* [리뉴얼] 직관적이고 트렌디한 결과창 스타일 */
+        #result {
+            display: none;
+            margin-top: 50px;
+            padding-top: 40px;
+            border-top: 2px solid var(--black);
+        }
+        .score-display {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent);
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .result-title {
+            font-size: 26px;
+            font-weight: 800;
+            line-height: 1.3;
+            letter-spacing: -1px;
+            margin-bottom: 15px;
+        }
+        .model-tags {
+            margin-bottom: 25px;
+        }
+        .model-tag {
+            display: inline-block;
+            font-size: 13px;
+            font-weight: 700;
+            background: var(--black);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 4px;
+            margin-right: 6px;
+        }
+        .quote-box {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+            border-left: 2px solid #ccc;
+            padding-left: 16px;
+            margin: 25px 0;
+            font-weight: 500;
+        }
+        .quote-box small {
+            display: block;
+            margin-top: 6px;
+            color: #999;
+            font-size: 12px;
+        }
+        .result-desc {
+            font-size: 14px;
+            line-height: 1.7;
+            color: var(--gray-dark);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>돈의 심리학<br>투자 성향 테스트</h1>
+    <div class="subtitle">모건 하우절 기반 마인드셋 체크</div>
+    
+    <form id="quizForm">
+        <!-- Q1 -->
+        <div class="question-card">
+            <div class="question-title">Q1. 내 자산 계좌가 한 달 만에 -30%가 되더라도 내 일상이나 수면에 전혀 지장을 받지 않는다.</div>
+            <div class="options">
+                <label class="option-label"><input type="radio" name="q1" value="5" required> 매우 그렇다</label>
+                <label class="option-label"><input type="radio" name="q1" value="4"> 그렇다</label>
+                <label class="option-label"><input type="radio" name="q1" value="3"> 보통이다</label>
+                <label class="option-label"><input type="radio" name="q1" value="2"> 아니다</label>
+                <label class="option-label"><input type="radio" name="q1" value="1"> 전혀 아니다</label>
+            </div>
+        </div>
+
+        <!-- Q2 -->
+        <div class="question-card">
+            <div class="question-title">Q2. 아무리 수익률이 높다고 소문나도, 내가 이해하지 못하거나 통제할 수 없는 상품(코인 등)에는 절대 돈을 넣지 않는다.</div>
+            <div class="options">
+                <label class="option-label"><input type="radio" name="q2" value="5" required> 전혀 아니다, 트렌드라면 일단 과감히 진입한다</label>
+                <label class="option-label"><input type="radio" name="q2" value="4"> 높은 리스크를 감수하고 소액 투자해 본다</label>
+                <label class="option-label"><input type="radio" name="q2" value="3"> 철저히 검증한 후 일부만 투자한다</label>
+                <label class="option-label"><input type="radio" name="q2" value="2"> 웬만하면 아는 것 위주로만 한다</label>
+                <label class="option-label"><input type="radio" name="q2" value="1"> 매우 그렇다, 모르는 영역은 절대 안 한다</label>
+            </div>
+        </div>
+
+        <!-- Q3 -->
+        <div class="question-card">
+            <div class="question-title">Q3. 주변 친구들이나 SNS에서 자산 대박 소식이 들려와도, 조급해하지 않고 내 페이스를 유지할 수 있다.</div>
+            <div class="options">
+                <label class="option-label"><input type="radio" name="q3" value="5" required> 매우 그렇다, 내 갈 길을 간다</label>
+                <label class="option-label"><input type="radio" name="q3" value="4"> 어느 정도 평정심을 유지한다</label>
+                <label class="option-label"><input type="radio" name="q3" value="3"> 보통이다</label>
+                <label class="option-label"><input type="radio" name="q3" value="2"> 다소 소외감(FOMO)을 느끼며 흔들린다</label>
+                <label class="option-label"><input type="radio" name="q3" value="1"> 전혀 아니다, 멘탈이 흔들려 추격 매수하고 싶다</label>
+            </div>
+        </div>
+
+        <!-- Q4 -->
+        <div class="question-card">
+            <div class="question-title">Q4. 나에게 투자의 목적은 최고의 수익률보다는, 밤에 다리 쭉 뻗고 편하게 잘 수 있는 '마음의 평온'이 더 중요하다.</div>
+            <div class="options">
+                <label class="option-label"><input type="radio" name="q4" value="5" required> 전혀 아니다, 잠을 못 자도 최고 수익률이 먼저다</label>
+                <label class="option-label"><input type="radio" name="q4" value="4"> 리스크가 크더라도 수익률 높은 자산을 선호한다</label>
+                <label class="option-label"><input type="radio" name="q4" value="3"> 수익성과 평온함의 밸런스를 맞춘다</label>
+                <label class="option-label"><input type="radio" name="q4" value="2"> 마음의 평온함이 조금 더 중요하다</label>
+                <label class="option-label"><input type="radio" name="q4" value="1"> 매우 그렇다, 마음의 평온함이 압도적이다</label>
+            </div>
+        </div>
+
+        <button type="button" onclick="calculateResult()">결과 확인하기</button>
+    </form>
+
+    <!-- 결과창 영역 -->
+    <div id="result">
+        <div class="score-display" id="scoreDisplay"></div>
+        <div class="result-title" id="resultTitle"></div>
+        <div class="model-tags" id="modelTags"></div>
+        <div class="quote-box" id="quoteBox"></div>
+        <div class="result-desc" id="resultDesc"></div>
+    </div>
+</div>
+
+<script>
+function calculateResult() {
+    const form = document.getElementById('quizForm');
+    if(!form.checkValidity()) {
+        alert("모든 문항에 답변해 주세요!");
+        return;
+    }
+
+    const q1 = parseInt(document.querySelector('input[name="q1"]:checked').value);
+    const q2 = parseInt(document.querySelector('input[name="q2"]:checked').value);
+    const q3 = parseInt(document.querySelector('input[name="q3"]:checked').value);
+    const q4 = parseInt(document.querySelector('input[name="q4"]:checked').value);
+
+    const total = q1 + q2 + q3 + q4;
+    
+    const resultDiv = document.getElementById('result');
+    const scoreObj = document.getElementById('scoreDisplay');
+    const titleObj = document.getElementById('resultTitle');
+    const tagsObj = document.getElementById('modelTags');
+    const quoteObj = document.getElementById('quoteBox');
+    const descObj = document.getElementById('resultDesc');
+    
+    resultDiv.style.display = "block";
+    scoreObj.innerText = `SCORE: ${total} / 20`;
+
+    if (total >= 16) {
+        titleObj.innerText = "복리의 마법을 믿는\n강철 멘탈 야수형";
+        tagsObj.innerHTML = `<span class="model-tag">#워런 버핏</span><span class="model-tag">#찰리 멍거</span>`;
+        quoteObj.innerHTML = "&ldquo;투자의 기본 요건은 지능이 아니라 성향이다. 시장의 엄청난 변동성 속에서도 미치지 않고 버틸 수 있는 성향 말이다.&rdquo;<small>— Warren Buffett</small>";
+        descObj.innerHTML = "당신은 시장의 일시적인 폭락이나 극심한 변동성에도 흔들리지 않고 장기적인 복리의 마법을 기다릴 줄 아는 강력한 리스크 선호자입니다. 워런 버핏과 그의 단짝 찰리 멍거처럼 극단적인 자산의 부침 속에서도 '끝까지 시장에 남아 서바이벌하는 것'이 최고의 투자임을 몸소 증명하는 타입입니다. 다만, 과도한 자신감이 리스크에 눈멀게 하지 않도록 늘 자산의 '안전마진'을 점검해보세요.";
+        
+    } else if (total >= 11) {
+        titleObj.innerText = "나만의 게임을 하는\n균형 잡힌 현실파";
+        tagsObj.innerHTML = `<span class="model-tag">#모건 하우절</span><span class="model-tag">#로널드 리드</span>`;
+        quoteObj.innerHTML = "&ldquo;돈이 주는 가장 큰 배당금은 내 시간을 내 뜻대로 쓸 수 있는 능력이다. 원하는 것을, 원할 때, 원하는 사람과 함께할 수 있는 자유 말이다.&rdquo;<small>— Morgan Housel</small>";
+        descObj.innerHTML = "당신은 무리하게 최고 수익률만 좇기보다는, 내 삶을 제어할 수 있는 '자유와 통제권'의 가치를 아는 스마트한 투자자입니다. 이 책의 저자인 모건 하우절, 그리고 평범한 환경미화원 출신의 백만장자 로널드 리드가 당신의 롤모델입니다. 타인의 대박 소식에 조급해하지 않고 꾸준한 저축과 합리적인 리스크 관리를 통해 '나만의 페이스'로 완벽하게 부를 쌓을 성향입니다.";
+        
+    } else {
+        titleObj.innerText = "밤에 다리 쭉 뻗고 자는\n안전제일 평온파";
+        tagsObj.innerHTML = `<span class="model-tag">#존 보글</span><span class="model-tag">#벤자민 그레이엄</span>`;
+        quoteObj.innerHTML = "&ldquo;투자에서 가장 안전한 전략은 전체 시장을 소유하고 아무것도 하지 않는 것이다. 밤에 잠을 편히 자는 것이 수익률 몇 프로보다 위대하다.&rdquo;<small>— John Bogle</small>";
+        descObj.innerHTML = "당신에게 돈의 진짜 목적은 '재산의 과시'나 '일확천금'이 아닌 '정신적인 안전판'입니다. 변동성이 심한 자산에 들어가 스트레스를 받느니, 조금 느리더라도 마음 편한 저위험 자산이나 인덱스 펀드를 선호합니다. 인덱스 펀드의 창시자 존 보글과 가치투자의 아버지 벤자민 그레이엄이 지향했던 '철저한 보수성과 방어적 투자법'이 딱 어울립니다. 욕심을 비우고 단순하게 투자할 때 오히려 가장 큰 평온과 확실한 부를 얻게 됩니다.";
+    }
+    
+    resultDiv.scrollIntoView({ behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
